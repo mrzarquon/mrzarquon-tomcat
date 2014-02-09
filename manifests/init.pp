@@ -1,5 +1,5 @@
 class tomcat(
-  $tomcat_version         = '7.0.25',
+  $tomcat_version         = '6.0.35',
   $war_source             = 'http://master/tomcat/',
   $tomcat_stage_dir       = '/opt/tomcat/active',
   $tomcat_target_dir      = '/opt/tomcat/active',
