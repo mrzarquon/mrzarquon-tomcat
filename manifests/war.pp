@@ -1,13 +1,12 @@
 define tomcat::war(
   $war_source        = 'http://master/tomcat',
-  $tomcat_stage_dir  = '/opt/tomcat/active',
+  $tomcat_stage_dir  = '/opt/staging/tomcat',
   $tomcat_target_dir = '/opt/tomcat/active',
   $filename
 ) {
 
   staging::file { "${tomcat_stage_dir}/war/${filename}":
     source  => "${war_source}/${filename}",
-    require => File[$tomcat_stage_dir],
   }
 
   exec { "extract_${name}":
