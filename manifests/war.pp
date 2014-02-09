@@ -7,6 +7,7 @@ define tomcat::war(
 
   staging::file { "${tomcat_stage_dir}/war/${filename}":
     source  => "${war_source}/${filename}",
+    require => File[$tomcat_stage_dir],
   }
 
   exec { "extract_${name}":
