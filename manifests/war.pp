@@ -1,6 +1,6 @@
 define tomcat::war(
   $war_source        = 'http://master/tomcat',
-  $tomcat_stage_dir  = '/opt/staging/tomcat',
+  $tomcat_stage_dir  = '/opt/tomcat/active',
   $tomcat_target_dir = '/opt/tomcat/active',
   $filename
 ) {
