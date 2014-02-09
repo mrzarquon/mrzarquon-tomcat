@@ -5,10 +5,8 @@ define tomcat::war(
   $filename
 ) {
 
-  file { "${tomcat_stage_dir}/war/${filename}":
+  staging::file { "${tomcat_stage_dir}/war/${filename}":
     source  => "${war_source}/${filename}",
-    backup  => false,
-    notify  => Service['tomcat'],
   }
 
   exec { "extract_${name}":
@@ -17,7 +15,7 @@ define tomcat::war(
     refresh     => "rm -Rf ${tomcat_target_dir}/apps/${filename} && unzip ${tomcat_stage_dir}/war/${filename} -d ${tomcat_target_dir}/apps/${filename}",
     require     => [File["${tomcat_target_dir}/apps"], Package['unzip']],
     subscribe   => [
-      File["${tomcat_stage_dir}/war/${filename}"],
+      Staging::File["${tomcat_stage_dir}/war/${filename}"],
       File[$tomcat_stage_dir],
       File["${tomcat_target_dir}/webapps/${name}"],
     ], 
